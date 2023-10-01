@@ -1,0 +1,39 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import type { Post } from "@my-app/db/lib/generated/client";
+import { prisma } from "@my-app/db/lib/prisma";
+import { HttpStatusCode } from "../../../util/statuscode";
+
+const AllowedFields = new Set(["title", "content", "likes"]);
+
+export default async function PostDetail(
+  req: NextApiRequest,
+  res: NextApiResponse<Partial<Post>>,
+): Promise<void> {
+  const filter = req.query.filter;
+  const parts = typeof filter === "string" ? filter.split(",") : filter;
+  const selectFields = parts?.reduce<Record<string, boolean>>((acc, curr) => {
+    if (AllowedFields.has(curr)) {
+      acc[curr] = true;
+    }
+    return acc;
+  }, {});
+  const select =
+    selectFields && Object.keys(selectFields).length > 0
+      ? selectFields
+      : undefined;
+
+  const rawPost = req.query.post;
+  const id = typeof rawPost === "string" ? rawPost : undefined;
+  if (!id) {
+    res.status(HttpStatusCode.BAD_REQUEST).end();
+    return;
+  }
+
+  const post = await prisma.post.findFirst({ select, where: { id } });
+  if (!post) {
+    res.status(HttpStatusCode.NOT_FOUND).end();
+    return;
+  }
+
+  res.status(HttpStatusCode.OK).json(post);
+}

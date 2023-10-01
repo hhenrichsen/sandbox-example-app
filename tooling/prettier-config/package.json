@@ -1,0 +1,17 @@
+{
+  "name": "@my-app/prettier-config",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --check \"**/*.{js,jsx,cjs,mjs,prisma,ts,tsx,md,json}\""
+  },
+  "dependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
+    "prettier": "^3.0.3"
+  },
+  "devDependencies": {
+    "prettier-plugin-prisma": "^5.0.0"
+  },
+  "prettier": "./index.js"
+}
