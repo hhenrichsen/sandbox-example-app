@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Post } from "@my-app/db/lib/generated/client";
 import { prisma } from "@my-app/db/lib/prisma";
-import { HttpStatusCode } from "../../../util/statuscode";
+import { HttpStatusCode } from "@my-app/status-codes";
 
 const AllowedFields = new Set(["title", "content", "likes"]);
 

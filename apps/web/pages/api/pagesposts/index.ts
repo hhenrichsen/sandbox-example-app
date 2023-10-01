@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Post } from "@my-app/db/lib/generated/client";
 import { prisma } from "@my-app/db/lib/prisma";
+import { HttpStatusCode } from "@my-app/status-codes";
 
 const AllowedFields = new Set(["title", "content", "likes"]);
 
@@ -27,5 +28,5 @@ export default async function PostList(
   const postList = await prisma.post.findMany({ select });
 
   // Primary difference 2: we just return the post list, no processing needed
-  res.status(200).json(postList);
+  res.status(HttpStatusCode.OK).json(postList);
 }

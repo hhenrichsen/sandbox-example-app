@@ -40,6 +40,9 @@ importers:
       '@my-app/db':
         specifier: '*'
         version: link:../../packages/db
+      '@my-app/status-codes':
+        specifier: '*'
+        version: link:../../packages/status-codes
       '@my-app/ui':
         specifier: '*'
         version: link:../../packages/ui
@@ -163,6 +166,27 @@ importers:
       prisma:
         specifier: ^5.3.1
         version: 5.3.1
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+
+  packages/status-codes:
+    devDependencies:
+      '@my-app/eslint-config-custom':
+        specifier: '*'
+        version: link:../../tooling/eslint-config-custom
+      '@my-app/prettier-config':
+        specifier: '*'
+        version: link:../../tooling/prettier-config
+      '@my-app/tsconfig':
+        specifier: '*'
+        version: link:../../tooling/tsconfig
+      eslint:
+        specifier: ^8.48.0
+        version: 8.49.0
+      prettier:
+        specifier: ^3.0.3
+        version: 3.0.3
       typescript:
         specifier: ^5.2.2
         version: 5.2.2

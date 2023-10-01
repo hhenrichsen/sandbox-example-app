@@ -1,0 +1,22 @@
+{
+  "name": "@my-app/status-codes",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "withenv": "dotenv -e ../../.env --",
+    "format": "prettier --check \"**/*.{js,jsx,cjs,mjs,prisma,ts,tsx,md,json}\"",
+    "db:generate": "pnpm withenv prisma generate",
+    "db:push": "pnpm withenv prisma db push",
+    "db:studio": "pnpm withenv prisma studio"
+  },
+  "devDependencies": {
+    "@my-app/eslint-config-custom": "*",
+    "@my-app/prettier-config": "*",
+    "@my-app/tsconfig": "*",
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "prettier": "@my-app/prettier-config"
+}
