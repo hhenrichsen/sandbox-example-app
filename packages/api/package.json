@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@my-app/db": "*",
+    "@my-app/mongo": "*",
     "@trpc/client": "^10.38.4",
     "@trpc/server": "^10.38.3",
     "zod": "^3.22.2"

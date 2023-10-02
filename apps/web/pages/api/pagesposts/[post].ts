@@ -1,13 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { Post } from "@my-app/db/lib/generated/client";
 import { prisma } from "@my-app/db/lib/prisma";
+import { comment } from "@my-app/mongo";
+import type { Comment } from "@my-app/mongo/models/comment";
 import { HttpStatusCode } from "@my-app/status-codes";
 
 const AllowedFields = new Set(["title", "content", "likes"]);
 
 export default async function PostDetail(
   req: NextApiRequest,
-  res: NextApiResponse<Partial<Post>>,
+  res: NextApiResponse<Partial<Post & { comments: readonly Comment[] }>>,
 ): Promise<void> {
   const filter = req.query.filter;
   const parts = typeof filter === "string" ? filter.split(",") : filter;
@@ -35,5 +37,7 @@ export default async function PostDetail(
     return;
   }
 
-  res.status(HttpStatusCode.OK).json(post);
+  const comments = await comment.find({ post: id }).exec();
+
+  res.status(HttpStatusCode.OK).json({ ...post, comments });
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { trpc } from "../util/trpc";
 
 function Posts(): JSX.Element {
+  const _ctx = trpc.useContext();
   const mutation = trpc.addPost.useMutation();
   const query = trpc.postList.useQuery();
 
@@ -20,13 +21,16 @@ function Posts(): JSX.Element {
   return (
     <div>
       {posts.length > 0 ? (
-        posts.map((post) => (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>Likes: {post.likes}</p>
-            <p>{post.content}</p>
-          </div>
-        ))
+        posts.map((post) => {
+          return (
+            <div key={post.id}>
+              <h2>{post.title}</h2>
+              <p>Likes: {post.likes}</p>
+              <p>Comments: {post.comments.length}</p>
+              <p>{post.content}</p>
+            </div>
+          );
+        })
       ) : (
         <p>No posts found.</p>
       )}
