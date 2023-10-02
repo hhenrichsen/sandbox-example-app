@@ -23,6 +23,7 @@
     "@manypkg/cli": "^0.21.0",
     "@my-app/prettier-config": "*",
     "@my-app/tsconfig": "*",
+    "@turbo/gen": "^1.10.12",
     "eslint": "^8.48.0",
     "prettier": "^3.0.3",
     "turbo": "latest"
