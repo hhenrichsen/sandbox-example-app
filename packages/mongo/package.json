@@ -1,0 +1,39 @@
+{
+  "name": "@my-app/mongo",
+  "private": true,
+  "version": "0.0.0",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "src/*"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{js,jsx,cjs,mjs,prisma,ts,tsx,md,json}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.3"
+  },
+  "devDependencies": {
+    "@my-app/eslint-config-custom": "*",
+    "@my-app/prettier-config": "*",
+    "@my-app/tsconfig": "*",
+    "eslint": "^8.48.0",
+    "typescript": "^5.2.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@my-app/eslint-config/base"
+    ]
+  },
+  "prettier": "@my-app/prettier-config"
+}
